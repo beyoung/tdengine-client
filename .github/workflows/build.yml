@@ -1,0 +1,34 @@
+name: build image
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Build & Push golang images to dockerhub repo
+        uses: opspresso/action-docker@v0.2.8
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERFILE: "Dockerfile.golang"
+          IMAGE_NAME: "beyouth/tdengine-goclient"
+          TAG_NAME: "1.6.6.1"
+          LATEST: "true"
+
+      - name: Build & Push python images to dockerhub repo
+        uses: opspresso/action-docker@v0.2.8
+        with:
+          args: --docker
+        env:
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERFILE: "Dockerfile.python"
+          IMAGE_NAME: "beyouth/tdengine-pyclient"
+          TAG_NAME: "1.6.6.1"
+          LATEST: "true"
