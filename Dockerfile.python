@@ -11,7 +11,8 @@ RUN cd /build/ && \
     echo "y" |cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     mkdir -p /etc/taos && \
     mkdir -p /data/log/ && \
-    ln -s /usr/lib/libtaos.so.1 /usr/lib/libtaos.so
+    ln -s /usr/lib/libtaos.so.1 /usr/lib/libtaos.so && \
+    rm -rf /build
 
 COPY taos.cfg /etc/taos
 
