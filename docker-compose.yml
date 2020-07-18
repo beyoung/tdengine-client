@@ -4,13 +4,16 @@ services:
   tdengine:
     image: beyouth/tdengine-server
     ports:
-    - 6030:6030
+      - 6030:6030
 
   goclient:
-    build:
-      context: .
-      dockerfile: Dockerfile
-
+    image: beyouth/tdengine-goclient
     volumes:
       - .:/app
-    entrypoint: "sh /app/run.sh"
+    entrypoint: "sh /app/run-go.sh"
+
+  pyclient:
+    image: beyouth/tdengine-pyclient
+    volumes:
+      - .:/app
+    entrypoint: "sh /app/run-py.sh"

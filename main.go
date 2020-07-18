@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/taosdata/driver-go/taosSql"
 	"time"
+	"log"
 )
 
 var (
@@ -19,14 +20,14 @@ var (
 func Init(){
 	tableName = "test"
 	dbName = "test"
-	db1, err = sql.Open("taosSql", "root:taosdata@/tcp(172.21.0.2:0)/")
+	db1, err = sql.Open("taosSql", "root:taosdata@/tcp(172.19.0.2:0)/")
 	checkErr(err)
-	//res, err := db1.Exec("create database test; ")
-	//if err != nil {
-	//	log.Println(res)
-	//}
-	//checkErr(err)
-	db2, err = sql.Open("taosSql", "root:taosdata@/tcp(172.21.0.2:0)/test")
+	res, err := db1.Exec("create database test; ")
+	if err != nil {
+		log.Println(res)
+	}
+	checkErr(err)
+	db2, err = sql.Open("taosSql", "root:taosdata@/tcp(172.19.0.2:0)/test")
 	checkErr(err)
 }
 
@@ -86,7 +87,7 @@ func runTdengine() {
 }
 
 func main() {
-	//runServer()
+// 	runServer()
 	Init()
 	runTdengine()
 }
