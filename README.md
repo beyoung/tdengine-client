@@ -1,4 +1,5 @@
 # tdengine client 
+![build image](https://github.com/beyoung/tdengine-client/workflows/build%20image/badge.svg)
 
 基于tdengine 1.6.6.1秘制 docker client。
 
