@@ -1,6 +1,8 @@
 name: build image
 
-on: push
+on:
+  create:
+    tags:
 
 jobs:
   build:
@@ -18,7 +20,7 @@ jobs:
           PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           DOCKERFILE: "Dockerfile.golang"
           IMAGE_NAME: "beyouth/tdengine-goclient"
-          TAG_NAME: "1.6.6.1"
+          TAG_NAME: "2.0.0.0"
           LATEST: "true"
 
       - name: Build & Push python images to dockerhub repo
@@ -30,5 +32,5 @@ jobs:
           PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           DOCKERFILE: "Dockerfile.python"
           IMAGE_NAME: "beyouth/tdengine-pyclient"
-          TAG_NAME: "1.6.6.1"
+          TAG_NAME: "2.0.0.0"
           LATEST: "true"

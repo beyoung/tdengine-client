@@ -4,14 +4,15 @@ import time
 
 
 def run_tdengine():
-    conn = taos.connect(host="172.20.0.2", user="root", password="taosdata", config="/etc/taos")
+    conn = taos.connect(host="tdengine", user="root", password="taosdata", config="/etc/taos")
 
     # Generate a cursor object to run SQL commands
     c1 = conn.cursor()
 
     # Create a database named db
     try:
-        c1.execute('create database db')
+        c1.execute('create database pytest;')
+        print('create database pytest ok!')
     except Exception as err:
         conn.close()
         raise (err)

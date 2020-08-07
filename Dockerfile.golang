@@ -2,7 +2,9 @@ FROM golang:1.14.6-stretch
 
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib"
 COPY inc/* /usr/include/
-COPY driver/libtaos.so.1.6.6.1 /usr/lib/libtaos.so.1
+COPY driver/libtaos.so.2.0.0.0 /usr/lib/libtaos.so.1
+
+WORKDIR /app
 
 RUN go env -w GOPROXY=https://goproxy.cn,direct && \
     echo "y" |cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
@@ -12,6 +14,6 @@ RUN go env -w GOPROXY=https://goproxy.cn,direct && \
 
 COPY taos.cfg /etc/taos
 
-WORKDIR /app
+
 
 

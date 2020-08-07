@@ -8,12 +8,18 @@ services:
 
   goclient:
     image: beyouth/tdengine-goclient
+    build:
+      dockerfile: Dockerfile.golang
+      context: .
     volumes:
       - .:/app
     entrypoint: "sh /app/run-go.sh"
 
   pyclient:
     image: beyouth/tdengine-pyclient
+    build:
+      dockerfile: Dockerfile.python
+      context: .
     volumes:
       - .:/app
     entrypoint: "sh /app/run-py.sh"
